@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>CineVault – Free Movies & Web Series</title>
+<meta name="description" content="Watch & Download Latest Movies Free – Bollywood, Hollywood, Hindi Dubbed. Daily Updates on Telegram.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f;--card:#111520;--card2:#161b28;
+  --gold:#f5c518;--red:#e50914;--teal:#00d4aa;--blue:#0088cc;--blue2:#4fc3f7;
+  --text:#f0f0f0;--muted:#7a8099;--muted2:#a8b0c8;
+  --border:rgba(245,197,24,0.13);--b2:rgba(255,255,255,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;padding-bottom:84px;}
+a{text-decoration:none;-webkit-tap-highlight-color:transparent;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+
+/* ── TICKER ── */
+.ticker-wrap{background:linear-gradient(90deg,#6b0000,var(--red),#6b0000);overflow:hidden;padding:8px 0;z-index:10;position:relative;}
+.ticker-track{display:flex;animation:tick 32s linear infinite;white-space:nowrap;}
+.ticker-item{font-size:11.5px;font-weight:700;color:#fff;padding:0 24px;display:inline-flex;align-items:center;gap:7px;letter-spacing:0.4px;}
+.t-dot{color:var(--gold);font-size:7px;}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── HEADER ── */
+.header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 10px;position:relative;z-index:10;background:linear-gradient(180deg,#0f0b20,transparent);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;background:linear-gradient(135deg,var(--gold),#ff7a30);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.logo span{background:linear-gradient(135deg,var(--teal),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hdr-right{display:flex;align-items:center;gap:8px;}
+.live-badge{background:var(--red);color:#fff;font-size:9px;font-weight:800;padding:4px 8px;border-radius:4px;letter-spacing:1.5px;animation:livepulse 2s infinite;}
+@keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(229,9,20,.6);}50%{box-shadow:0 0 0 6px rgba(229,9,20,0);}}
+.tg-join-btn{display:flex;align-items:center;gap:5px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.45);color:var(--blue2);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;}
+
+/* ── HERO ── */
+.hero{position:relative;background:linear-gradient(175deg,#0f0c22 0%,#12091a 45%,var(--bg) 100%);padding-bottom:28px;overflow:hidden;}
+.hero-glows{position:absolute;inset:0;pointer-events:none;}
+.glow-r{position:absolute;top:-70px;right:-50px;width:240px;height:240px;background:radial-gradient(circle,rgba(229,9,20,.25) 0%,transparent 70%);}
+.glow-l{position:absolute;bottom:-30px;left:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,136,204,.14) 0%,transparent 70%);}
+.hero-body{text-align:center;padding:8px 20px 0;position:relative;z-index:2;}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;animation:fup .5s .1s both;}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;letter-spacing:1px;margin-bottom:10px;animation:fup .5s .2s both;}
+.h-title em{font-style:normal;color:var(--gold);}
+.h-sub{font-size:13px;line-height:1.65;color:var(--muted2);max-width:300px;margin:0 auto 20px;animation:fup .5s .3s both;}
+
+/* ── STATS ── */
+.stats{display:flex;margin:0 18px 22px;background:var(--card);border:1px solid var(--b2);border-radius:14px;overflow:hidden;animation:fup .5s .4s both;}
+.st{flex:1;text-align:center;padding:12px 6px;position:relative;}
+.st+.st::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:1px;background:var(--b2);}
+.sn{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold);line-height:1;}
+.sl{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+/* ── CTA BUTTONS ── */
+.cta-wrap{display:flex;flex-direction:column;gap:12px;padding:0 18px;animation:fup .5s .5s both;}
+.btn-cta{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 18px;border-radius:14px;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .18s;}
+.btn-cta:active{transform:scale(.97);}
+.bc-left{display:flex;align-items:center;gap:11px;}
+.bc-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.bc-main{display:block;font-size:14px;font-weight:700;color:#fff;}
+.bc-sub{display:block;font-size:10.5px;font-weight:400;color:rgba(255,255,255,.65);margin-top:2px;}
+.bc-arr{font-size:18px;opacity:.8;transition:transform .2s;}
+.btn-cta:hover .bc-arr{transform:translateX(4px);}
+.btn-watch{background:linear-gradient(135deg,#1f0808,#350a0a);border:1.5px solid rgba(229,9,20,.5);box-shadow:0 4px 20px rgba(229,9,20,.2);}
+.btn-watch .bc-icon{background:rgba(229,9,20,.18);}
+.btn-tg{background:linear-gradient(135deg,#061828,#092540);border:1.5px solid rgba(0,136,204,.5);box-shadow:0 4px 20px rgba(0,136,204,.2);}
+.btn-tg .bc-icon{background:rgba(0,136,204,.18);}
+.btn-cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.05),transparent);animation:shim 3s infinite;}
+.btn-tg::before{animation-delay:1.5s;}
+@keyframes shim{0%{left:-100%;}100%{left:200%;}}
+.tg-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(0,136,204,.15);color:var(--blue2);font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:20px;border:1px solid rgba(0,136,204,.25);margin-top:3px;}
+
+/* ── TELEGRAM PROMO BOX ── */
+.tg-promo{margin:22px 18px 0;background:linear-gradient(135deg,#040e1a,#081828);border:1.5px solid rgba(0,136,204,.35);border-radius:18px;padding:20px 18px;position:relative;overflow:hidden;}
+.tg-promo::after{content:'✈';position:absolute;right:-5px;bottom:-10px;font-size:80px;opacity:.05;}
+.tg-promo-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:6px;}
+.tg-promo-title span{color:var(--blue2);}
+.tg-promo-msg{font-size:12.5px;color:var(--muted2);line-height:1.6;margin-bottom:14px;}
+.tg-promo-msg strong{color:var(--gold);}
+.tg-steps{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;}
+.tg-step{text-align:center;}
+.tgs-icon{font-size:22px;margin-bottom:3px;}
+.tgs-txt{font-size:9.5px;font-weight:600;color:var(--muted2);}
+.tg-step-arr{font-size:18px;color:var(--muted);margin-bottom:14px;}
+.big-tg-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;background:linear-gradient(135deg,#0088cc,#006699);color:#fff;font-size:15px;font-weight:800;padding:15px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 6px 22px rgba(0,136,204,.35);transition:transform .18s;position:relative;overflow:hidden;}
+.big-tg-btn:active{transform:scale(.97);}
+.big-tg-btn::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);animation:shim 2.5s infinite;}
+.member-row{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:12px;font-size:11px;color:var(--muted2);}
+.avs{display:flex;}
+.av{width:22px;height:22px;border-radius:50%;background:var(--card2);border:2px solid var(--bg);font-size:10px;display:flex;align-items:center;justify-content:center;margin-left:-5px;}
+.av:first-child{margin-left:0;}
+
+/* ── SECTION UTIL ── */
+.divider{display:flex;align-items:center;gap:10px;padding:22px 18px 8px;}
+.dl{flex:1;height:1px;background:var(--b2);}
+.dt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
+.sec-head{display:flex;align-items:center;justify-content:space-between;padding:4px 18px 14px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;}
+.sec-title span{color:var(--gold);}
+.sec-all{font-size:11px;color:var(--teal);font-weight:600;padding:5px 12px;border:1px solid rgba(0,212,170,.3);border-radius:20px;}
+
+/* ── TRENDING CARDS (big horizontal) ── */
+.trend-scroll{display:flex;gap:14px;padding:0 18px 6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.trend-scroll::-webkit-scrollbar{display:none;}
+.trend-card{flex-shrink:0;width:160px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.trend-card:active .tc-poster{transform:scale(.96);}
+.tc-poster{width:160px;height:230px;border-radius:13px;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--b2);transition:transform .2s;}
+.tc-img{width:100%;height:100%;object-fit:cover;display:block;}
+.tc-img-fail{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:60px;background:var(--card);}
+.tc-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.93) 100%);}
+.tc-hot{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-size:8.5px;font-weight:800;padding:3px 8px;border-radius:5px;letter-spacing:.5px;animation:livepulse 2s infinite;}
+.tc-quality{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);color:var(--gold);font-size:9px;font-weight:700;padding:3px 7px;border-radius:5px;border:1px solid rgba(245,197,24,.4);}
+.tc-info{position:absolute;bottom:0;left:0;right:0;padding:10px;}
+.tc-name{font-size:13px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:4px;}
+.tc-meta{font-size:10px;color:rgba(255,255,255,.6);margin-bottom:8px;}
+.tc-btn{display:flex;align-items:center;justify-content:center;gap:5px;background:var(--red);color:#fff;font-size:10.5px;font-weight:800;padding:7px 12px;border-radius:8px;border:none;cursor:pointer;width:100%;}
+
+/* ── MOVIE LIST (normal movies) ── */
+.movie-list{padding:0 18px;display:flex;flex-direction:column;gap:12px;}
+.movie-item{display:flex;gap:12px;background:var(--card);border:1px solid var(--b2);border-radius:14px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s;}
+.movie-item:active{border-color:rgba(245,197,24,.3);}
+.mi-poster{width:80px;height:116px;flex-shrink:0;object-fit:cover;background:var(--card2);}
+.mi-poster-fallback{width:80px;height:116px;flex-shrink:0;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:32px;}
+.mi-body{flex:1;padding:12px 12px 12px 0;display:flex;flex-direction:column;justify-content:space-between;}
+.mi-top{}
+.mi-title{font-size:14px;font-weight:800;color:#eee;line-height:1.2;margin-bottom:4px;}
+.mi-audio{font-size:11px;color:var(--teal);font-weight:600;margin-bottom:5px;}
+.mi-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+.mtag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.mtag-hd{background:rgba(229,9,20,.18);color:#ff7070;border:1px solid rgba(229,9,20,.25);}
+.mtag-lang{background:rgba(0,212,170,.1);color:var(--teal);border:1px solid rgba(0,212,170,.2);}
+.mtag-free{background:rgba(245,197,24,.12);color:var(--gold);border:1px solid rgba(245,197,24,.25);}
+.mi-btns{display:flex;gap:6px;}
+.mi-btn-watch{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;background:rgba(229,9,20,.15);border:1px solid rgba(229,9,20,.4);color:#ff7070;font-size:10.5px;font-weight:700;padding:7px 4px;border-radius:7px;cursor:pointer;}
+.mi-btn-dl{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.4);color:var(--blue2);font-size:10.5px;font-weight:700;padding:7px 4px;border-radius:7px;cursor:pointer;}
+
+/* ── HOW TO WATCH ── */
+.how-box{margin:22px 18px 0;background:var(--card);border:1px solid var(--b2);border-radius:16px;padding:18px;}
+.how-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:14px;}
+.how-title span{color:var(--teal);}
+.how-steps{display:flex;flex-direction:column;gap:10px;}
+.how-step{display:flex;align-items:center;gap:12px;}
+.hs-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--red),#8b0000);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hs-text{font-size:12.5px;color:var(--muted2);line-height:1.4;}
+.hs-text strong{color:var(--gold);}
+
+/* ── BOTTOM TG BAND ── */
+.sub-band{margin:22px 18px 0;background:linear-gradient(135deg,#071830,#0d2648);border:1.5px solid rgba(0,136,204,.3);border-radius:20px;padding:24px 18px;text-align:center;position:relative;overflow:hidden;}
+.sb-glow{position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(0,136,204,.15) 0%,transparent 70%);pointer-events:none;}
+.sb-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;position:relative;margin-bottom:8px;}
+.sb-title span{color:var(--blue2);}
+.sb-msg{font-size:13px;color:var(--muted2);line-height:1.65;margin-bottom:18px;position:relative;}
+.sb-msg strong{color:var(--gold);}
+.sb-perks{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;text-align:left;position:relative;}
+.sb-perk{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted2);}
+.sb-perk span:first-child{font-size:16px;}
+.sb-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;background:linear-gradient(135deg,#0088cc,#0066aa);color:#fff;font-size:15px;font-weight:800;padding:16px;border-radius:13px;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(0,136,204,.35);transition:transform .18s;position:relative;overflow:hidden;}
+.sb-btn:active{transform:scale(.97);}
+.sb-btn::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);animation:shim 2.5s infinite;}
+
+/* ── FEATURES GRID ── */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px;}
+.fc{background:var(--card);border:1px solid var(--b2);border-radius:13px;padding:14px;}
+.fc-icon{font-size:22px;margin-bottom:6px;}
+.fc-name{font-size:12.5px;font-weight:700;margin-bottom:3px;}
+.fc-desc{font-size:10.5px;color:var(--muted);line-height:1.4;}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:26px 20px 14px;border-top:1px solid var(--b2);margin-top:26px;}
+.f-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;background:linear-gradient(135deg,var(--gold),#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:7px;}
+.f-txt{font-size:11px;color:var(--muted);line-height:1.7;}
+.f-links{display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap;}
+.f-link{font-size:11px;color:var(--muted);}
+.f-copy{font-size:10px;color:rgba(122,128,153,.4);margin-top:12px;}
+
+/* ── BOTTOM NAV ── */
+.bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(8,9,16,.97);backdrop-filter:blur(16px);border-top:1px solid var(--b2);display:flex;align-items:center;padding:10px 0 14px;z-index:100;}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.ni-icon{font-size:20px;line-height:1;}
+.ni-label{font-size:9px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;}
+.ni.active .ni-label{color:var(--gold);}
+.ni.active .ni-icon{filter:drop-shadow(0 0 5px var(--gold));}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%) translateY(60px);background:rgba(16,20,36,.97);border:1px solid var(--border);color:#fff;font-size:13px;font-weight:600;padding:11px 22px;border-radius:40px;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:999;white-space:nowrap;transition:transform .4s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(8px);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* ── PARTICLES ── */
+.particle{position:fixed;border-radius:50%;pointer-events:none;z-index:1;animation:floatp linear infinite;opacity:0;}
+@keyframes floatp{0%{transform:translateY(100vh) scale(0);opacity:0;}8%{opacity:.4;}92%{opacity:.15;}100%{transform:translateY(-10vh) scale(1);opacity:0;}}
+
+/* ── ANIMATIONS ── */
+@keyframes fup{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.anim{opacity:0;animation:fup .5s forwards;}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="t-dot">●</span>🔥 O Romeo – Ab Available</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🆕 Dhurandhar – Watch Now</span>
+    <span class="ticker-item"><span class="t-dot">●</span>✅ Babumoshai Bandookbaaz – HD</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🎬 Ammu (2025) – 1080p Added</span>
+    <span class="ticker-item"><span class="t-dot">●</span>📥 The Girlfriend – Free Download</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🌟 Caught Stealing – Hindi+Eng</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🚀 Heart Eye – New Upload</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🔥 O Romeo – Ab Available</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🆕 Dhurandhar – Watch Now</span>
+    <span class="ticker-item"><span class="t-dot">●</span>✅ Babumoshai Bandookbaaz – HD</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🎬 Ammu (2025) – 1080p Added</span>
+    <span class="ticker-item"><span class="t-dot">●</span>📥 The Girlfriend – Free Download</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🌟 Caught Stealing – Hindi+Eng</span>
+    <span class="ticker-item"><span class="t-dot">●</span>🚀 Heart Eye – New Upload</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">Cine<span>Vault</span></div>
+  <div class="hdr-right">
+    <div class="live-badge">🔴 LIVE</div>
+    <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="tg-join-btn" onclick="t('✈ Telegram khul raha hai...')">✈ Join Free</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glows"><div class="glow-r"></div><div class="glow-l"></div></div>
+  <div class="hero-body">
+    <p class="eyebrow">✦ Daily New Movies – 100% Free ✦</p>
+    <h1 class="h-title">Movies <em>Seedha</em><br>Aapke Phone Pe</h1>
+    <p class="h-sub">Bollywood, Hollywood, Hindi Dubbed – sabhi movies <strong style="color:var(--gold)">bilkul free</strong> mein watch karo ya download karo. Telegram pe join karo, links daily milte hain! 🎬</p>
+  </div>
+  <div class="stats">
+    <div class="st"><div class="sn">100+</div><div class="sl">Movies</div></div>
+    <div class="st"><div class="sn">HD</div><div class="sl">Quality</div></div>
+    <div class="st"><div class="sn">FREE</div><div class="sl">Always</div></div>
+    <div class="st"><div class="sn">📲</div><div class="sl">Daily</div></div>
+  </div>
+  <div class="cta-wrap">
+    <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="btn-cta btn-watch" onclick="t('🎬 Trending movies load ho rahe hain...')">
+      <div class="bc-left">
+        <div class="bc-icon">🎬</div>
+        <div>
+          <span class="bc-main">Trending Movies Watch Karo</span>
+          <span class="bc-sub">Latest blockbusters – ab seedha phone pe</span>
+        </div>
+      </div>
+      <span class="bc-arr">▶</span>
+    </a>
+    <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="btn-cta btn-tg" onclick="t('📥 Download channel khul raha hai...')">
+      <div class="bc-left">
+        <div class="bc-icon">📥</div>
+        <div>
+          <span class="bc-main">Saari Movies Direct Download</span>
+          <span class="bc-sub">
+            Channel join karo → koi bhi movie download karo
+            <span class="tg-pill">✈ Telegram Channel • Free Forever</span>
+          </span>
+        </div>
+      </div>
+      <span class="bc-arr">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- TELEGRAM PROMO -->
+<div class="tg-promo anim" style="animation-delay:.05s">
+  <div class="tg-promo-title">📲 Telegram Pe <span>Kya Milega?</span></div>
+  <p class="tg-promo-msg">
+    Hamare Telegram channel pe aapko milega <strong>daily nayi movies</strong>, web series, HD quality mein — bilkul <strong>FREE</strong>! Sirf ek baar join karo, phir kabhi koi movie miss nahi hogi. 🔥
+  </p>
+  <div class="tg-steps">
+    <div class="tg-step"><div class="tgs-icon">📲</div><div class="tgs-txt">Click Join</div></div>
+    <div class="tg-step-arr">›</div>
+    <div class="tg-step"><div class="tgs-icon">✈</div><div class="tgs-txt">Telegram Open</div></div>
+    <div class="tg-step-arr">›</div>
+    <div class="tg-step"><div class="tgs-icon">🔔</div><div class="tgs-txt">Subscribe</div></div>
+    <div class="tg-step-arr">›</div>
+    <div class="tg-step"><div class="tgs-icon">🎬</div><div class="tgs-txt">Enjoy!</div></div>
+  </div>
+  <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="big-tg-btn" onclick="t('✈ CineVault Telegram join ho raha hai...')">
+    <span style="font-size:20px">✈</span> Abhi Telegram Join Karo – FREE!
+  </a>
+  <div class="member-row">
+    <div class="avs">
+      <div class="av">😊</div><div class="av">🧑</div><div class="av">👩</div><div class="av">🧔</div>
+    </div>
+    <span>Hazaron log already join kar chuke hain</span>
+  </div>
+</div>
+
+<!-- TRENDING MOVIES (3 real ones) -->
+<div class="divider anim" style="animation-delay:.1s">
+  <div class="dl"></div><div class="dt">🔥 Top Trending Movies</div><div class="dl"></div>
+</div>
+<div class="sec-head anim" style="animation-delay:.15s">
+  <div class="sec-title">Hot <span>This Week</span></div>
+  <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="sec-all" onclick="t('✈ Telegram pe aur movies hain...')">Sab Dekho →</a>
+</div>
+
+<div class="trend-scroll anim" id="trendScroll" style="animation-delay:.2s"></div>
+
+<!-- NORMAL MOVIES -->
+<div class="divider anim" style="animation-delay:.1s">
+  <div class="dl"></div><div class="dt">🎬 All Available Movies</div><div class="dl"></div>
+</div>
+<div class="sec-head anim" style="animation-delay:.15s">
+  <div class="sec-title">Movie <span>Collection</span></div>
+  <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="sec-all" onclick="t('📥 Aur movies download karo Telegram se...')">More →</a>
+</div>
+
+<div class="movie-list anim" id="movieList" style="animation-delay:.2s"></div>
+
+<!-- HOW TO WATCH -->
+<div class="how-box anim" style="animation-delay:.1s">
+  <div class="how-title">📖 Watch <span>Kaise Karein?</span></div>
+  <div class="how-steps">
+    <div class="how-step"><div class="hs-num">1</div><div class="hs-text"><strong>Movie link pe click karo</strong> — neeche diye button se</div></div>
+    <div class="how-step"><div class="hs-num">2</div><div class="hs-text"><strong>"View In App"</strong> button pe click karo</div></div>
+    <div class="how-step"><div class="hs-num">3</div><div class="hs-text"><strong>Diskwala App download karo</strong> (bilkul free)</div></div>
+    <div class="how-step"><div class="hs-num">4</div><div class="hs-text"><strong>Email se login karo</strong> aur movie enjoy karo HD mein! 🍿</div></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="sec-head anim" style="animation-delay:.05s;margin-top:22px">
+  <div class="sec-title">Kyun <span>CineVault?</span></div>
+</div>
+<div class="feat-grid anim" style="animation-delay:.1s">
+  <div class="fc"><div class="fc-icon">⚡</div><div class="fc-name">Instant Watch</div><div class="fc-desc">Koi sign-up nahi, seedha click karo aur dekho</div></div>
+  <div class="fc"><div class="fc-icon">🎯</div><div class="fc-name">HD Quality</div><div class="fc-desc">1080p aur 4K movies available hain</div></div>
+  <div class="fc"><div class="fc-icon">📱</div><div class="fc-name">Mobile First</div><div class="fc-desc">Phone pe perfectly optimized</div></div>
+  <div class="fc"><div class="fc-icon">🔄</div><div class="fc-name">Roz Update</div><div class="fc-desc">Har roz nayi movies upload hoti hain</div></div>
+  <div class="fc"><div class="fc-icon">🌐</div><div class="fc-name">Hindi+English</div><div class="fc-desc">Dual audio – Hindi & English both</div></div>
+  <div class="fc"><div class="fc-icon">💾</div><div class="fc-name">Free Download</div><div class="fc-desc">Telegram se direct download karo</div></div>
+</div>
+
+<!-- BIG SUBSCRIBE BAND -->
+<div class="sub-band anim" style="animation-delay:.1s">
+  <div class="sb-glow"></div>
+  <div class="sb-title">Koi Movie <span>Miss Mat Karo!</span></div>
+  <p class="sb-msg">Hamare Telegram channel ko <strong>ABHI JOIN KARO</strong> aur pao — Bollywood, Hollywood, South Movies, Web Series — sab kuch FREE mein! Daily notifications milenge. 🔥</p>
+  <div class="sb-perks">
+    <div class="sb-perk"><span>✅</span><span>Roz nayi movies – bilkul free</span></div>
+    <div class="sb-perk"><span>✅</span><span>HD, 1080p, 4K quality available</span></div>
+    <div class="sb-perk"><span>✅</span><span>Hindi + English dual audio</span></div>
+    <div class="sb-perk"><span>✅</span><span>Direct download – koi ads nahi</span></div>
+    <div class="sb-perk"><span>✅</span><span>Web Series bhi milti hain</span></div>
+  </div>
+  <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="sb-btn" onclick="t('✈ Telegram join ho raha hai...')">
+    <span style="font-size:20px">✈</span> Abhi Telegram Join Karo – Bilkul FREE!
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">CineVault</div>
+  <p class="f-txt">Free movies & web series — daily updates on Telegram.<br>Sab content Telegram & Diskwala App pe hosted hai.</p>
+  <div class="f-links">
+    <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="f-link">Telegram</a>
+    <a href="#" class="f-link">DMCA</a>
+    <a href="#" class="f-link">Contact</a>
+    <a href="#" class="f-link">Privacy</a>
+  </div>
+  <div class="f-copy">© 2025 CineVault. All content hosted externally.</div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <a href="#" class="ni active" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">
+    <span class="ni-icon">🏠</span><span class="ni-label">Home</span>
+  </a>
+  <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="ni" onclick="t('🔥 Trending movies...')">
+    <span class="ni-icon">🔥</span><span class="ni-label">Trending</span>
+  </a>
+  <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="ni" onclick="t('📥 Download channel...')">
+    <span class="ni-icon">📥</span><span class="ni-label">Download</span>
+  </a>
+  <a href="https://t.me/+Qx2dQWGjzGdlMjBl" class="ni" onclick="t('✈ Telegram join karo...')">
+    <span class="ni-icon">✈</span><span class="ni-label">Telegram</span>
+  </a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const TG = 'https://t.me/+Qx2dQWGjzGdlMjBl';
+
+// ── TOAST ──
+let ttm;
+function t(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(ttm);ttm=setTimeout(()=>el.classList.remove('show'),2600);
+}
+
+// ── REAL MOVIE DATA ──
+const trending = [
+  {
+    title:"O Romeo",
+    year:"2025",quality:"HD",audio:"Hindi",
+    link:"https://www.diskwala.com/app/69d4d83fdc3191e299dcd9aa",
+    poster:"https://i.ibb.co/YBtVQcSw/image.jpg",
+    fallback:"🎭",
+    hot:true,
+    desc:"Romance • Drama"
+  },
+  {
+    title:"Dhurandhar",
+    year:"2025",quality:"HD",audio:"Hindi",
+    link:"https://www.diskwala.com/app/69cd3078dc3191e299a6511d",
+    poster:"https://i.ibb.co/8g5qnkhB/image.jpg",
+    fallback:"🔥",
+    hot:true,
+    desc:"Action • Thriller"
+  },
+  {
+    title:"Babumoshai Bandookbaaz",
+    year:"2017",quality:"HD",audio:"Hindi",
+    link:"https://www.diskwala.com/app/69d508fcdc3191e299de663",
+    poster:"https://i.ibb.co/3tX3ZCN/image.jpg",
+    fallback:"🔫",
+    hot:true,
+    desc:"Action • Drama"
+  }
+];
+
+const normalMovies = [
+  {
+    title:"The Girlfriend",
+    subtitle:"(Step Mom Se Pyar)",
+    audio:"Hindi + English",
+    quality:"HD",
+    link:"https://www.diskwala.com/app/69daf247dc3191e299068067",
+    poster:"https://image.tmdb.org/t/p/w185/6OEBp0Gqv6DsOgi8diPUslT2kn5.jpg",
+    fallback:"🪅"
+  },
+  {
+    title:"Caught Stealing",
+    subtitle:"",
+    audio:"Hindi + English",
+    quality:"HD",
+    link:"https://www.diskwala.com/app/69daf2f8dc3191e2990684d5",
+    poster:"https://image.tmdb.org/t/p/w185/qnqGbB22YJ7dSs4o6M7exHkPbDl.jpg",
+    fallback:"🕵️"
+  },
+  {
+    title:"Yumm",
+    subtitle:"",
+    audio:"Hindi + English",
+    quality:"HD",
+    link:"https://www.diskwala.com/app/69daf2fcdc3191e2990684d8",
+    poster:"https://image.tmdb.org/t/p/w185/gqC93hkWDHIm1e7NKyeWuLBPzHT.jpg",
+    fallback:"🍕"
+  },
+  {
+    title:"My Old Ass",
+    subtitle:"",
+    audio:"Hindi + English",
+    quality:"HD",
+    link:"https://www.diskwala.com/app/69daf318dc3191e299068595",
+    poster:"https://image.tmdb.org/t/p/w185/iQMUbBWBIpnUNL5eeNK8q3bXW4w.jpg",
+    fallback:"🎒"
+  },
+  {
+    title:"Heart Eye",
+    subtitle:"",
+    audio:"Hindi + English",
+    quality:"HD",
+    link:"https://www.diskwala.com/app/69daf31cdc3191e29906859b",
+    poster:"https://image.tmdb.org/t/p/w185/3VTqLLCgmzLVHzNsM9MOhTcoqzr.jpg",
+    fallback:"❤️"
+  },
+  {
+    title:"Ammu",
+    subtitle:"(2025)",
+    audio:"Hindi",
+    quality:"1080p",
+    imdb:"8.7",
+    link:"https://www.diskwala.com/app/69daf3c0dc3191e299068b29",
+    poster:"https://image.tmdb.org/t/p/w185/A5eFIDyFkG6o4YGHvXgrLUoQAJW.jpg",
+    fallback:"⭐"
+  }
+];
+
+// ── POSTER FALLBACK HELPER ──
+function mkImg(src, fallback, cls, w, h){
+  return `<img src="${src}" class="${cls}" style="width:${w}px;height:${h}px;object-fit:cover;flex-shrink:0;border-radius:0" onerror="this.style.display='none';this.nextSibling.style.display='flex';" loading="lazy"><div class="mi-poster-fallback" style="display:none;width:${w}px;height:${h}px;font-size:${Math.round(w/2.5)}px;flex-shrink:0">${fallback}</div>`;
+}
+
+// ── RENDER TRENDING ──
+const ts = document.getElementById('trendScroll');
+trending.forEach(m => {
+  const c = document.createElement('div');
+  c.className='trend-card';
+  c.innerHTML=`
+    <div class="tc-poster">
+      <img class="tc-img" src="${m.poster}" onerror="this.style.display='none';this.nextSibling.style.display='flex'" loading="lazy">
+      <div class="tc-img-fail" style="display:none">${m.fallback}</div>
+      <div class="tc-overlay"></div>
+      ${m.hot?'<div class="tc-hot">🔥 TRENDING</div>':''}
+      <div class="tc-quality">${m.quality}</div>
+      <div class="tc-info">
+        <div class="tc-name">${m.title}</div>
+        <div class="tc-meta">${m.year} • ${m.desc||m.audio}</div>
+        <button class="tc-btn" onclick="goMovie('${m.link}','${m.title}')">▶ Watch / Download</button>
+      </div>
+    </div>
+  `;
+  ts.appendChild(c);
+});
+
+// ── RENDER NORMAL MOVIES ──
+const ml = document.getElementById('movieList');
+normalMovies.forEach(m => {
+  const el = document.createElement('div');
+  el.className='movie-item';
+  el.innerHTML=`
+    <img src="${m.poster}" style="width:80px;height:116px;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none';this.nextSibling.style.display='flex'" loading="lazy">
+    <div class="mi-poster-fallback" style="display:none">${m.fallback}</div>
+    <div class="mi-body">
+      <div class="mi-top">
+        <div class="mi-title">${m.title}${m.subtitle?' <span style="font-size:11px;font-weight:500;color:var(--muted2)">'+m.subtitle+'</span>':''}</div>
+        <div class="mi-audio">🔊 ${m.audio}</div>
+        ${m.imdb?`<div style="font-size:11px;color:var(--gold);font-weight:700;margin-bottom:5px">⭐ IMDb ${m.imdb}</div>`:''}
+        <div class="mi-tags">
+          <span class="mtag mtag-hd">${m.quality}</span>
+          <span class="mtag mtag-lang">Hindi+Eng</span>
+          <span class="mtag mtag-free">FREE</span>
+        </div>
+      </div>
+      <div class="mi-btns">
+        <button class="mi-btn-watch" onclick="goMovie('${m.link}','${m.title}')">▶ Watch</button>
+        <button class="mi-btn-dl" onclick="goMovie('${m.link}','${m.title}')">📥 Download</button>
+      </div>
+    </div>
+  `;
+  ml.appendChild(el);
+});
+
+function goMovie(link, title){
+  t('🎬 "'+title+'" load ho raha hai...');
+  setTimeout(()=>window.open(link,'_blank'),500);
+}
+
+// ── PARTICLES ──
+const cols=['#f5c518','#e50914','#00d4aa','#4fc3f7','#ff6b35'];
+const pc=document.getElementById('particles');
+for(let i=0;i<16;i++){
+  const p=document.createElement('div');p.className='particle';
+  const s=Math.random()*4+2;
+  p.style.cssText=`width:${s}px;height:${s}px;background:${cols[Math.floor(Math.random()*cols.length)]};left:${Math.random()*100}vw;animation-duration:${Math.random()*14+10}s;animation-delay:${Math.random()*12}s;filter:blur(${Math.random()}px);`;
+  pc.appendChild(p);
+}
+
+// ── INTERSECTION OBSERVER ──
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running';io.unobserve(e.target);}});
+},{threshold:0.08});
+document.querySelectorAll('.anim').forEach(el=>{el.style.animationPlayState='paused';io.observe(el);});
+</script>
+</body>
+</html>
